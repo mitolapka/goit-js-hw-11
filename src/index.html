@@ -1,14 +1,48 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page title</title>
-    <link rel="stylesheet" href="./sass/index.scss" />
-    <script type="module" src="./index.js"></script>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="https://i.icomoon.io/public/temp/6d6203da77/UntitledProject/style-svg.css"
+    />
+    <script src="
+https://cdn.jsdelivr.net/npm/notiflix@3.2.6/dist/notiflix-aio-3.2.6.min.js
+"></script>
   </head>
   <body>
-    <!-- ❗️❗️❗️ Add partials like so for every page -->
-    <include src="./partials/example.html"></include>
+    <div class="container">
+      <form class="search-form" id="search-form">
+        <input
+          class="search-input"
+          type="text"
+          name="searchQuery"
+          autocomplete="off"
+          placeholder="Search images..."
+        />
+        <button type="submit" class="search-button">
+          <svg class="icon icon-search">
+            <use xlink:href="#icon-search"></use>
+          </svg>
+        </button>
+      </form>
+
+      <div class="gallery">
+        <!-- Картки зображень будуть додаватись тут -->
+      </div>
+
+      <div class="btn-container">
+        <button type="button" class="load-more">Load more</button>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+    <script
+      defer
+      src="https://i.icomoon.io/public/temp/6d6203da77/UntitledProject/svgxuse.js"
+    ></script>
   </body>
 </html>
