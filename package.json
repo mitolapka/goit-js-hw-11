@@ -24,7 +24,7 @@
     "express": "^4.18.2",
     "modern-normalize": "^1.1.0",
     "notiflix": "^3.2.6",
-    "@swc/helpers": "^1.2.0"
+    "@swc/helpers": "^0.5.1"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.6.0",
