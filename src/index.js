@@ -97,6 +97,5 @@ form.addEventListener('submit', (e) => {
 loadMoreBtn.addEventListener('click', () => {
   page += 1;
     searchImages();
-    
-    
+        
 });

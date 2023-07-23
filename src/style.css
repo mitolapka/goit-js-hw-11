@@ -83,3 +83,6 @@ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 display: flex;
 justify-content: center;
 }
+.end-message {
+    font-size: 50px;
+}
