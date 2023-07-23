@@ -3,6 +3,7 @@ const API_KEY = '38400499-9377fca084918dc6c22b9bff8';
 const form = document.getElementById('search-form');
 const gallery = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
+const mes = document.querySelector('.end-message');
 
 let searchQuery = '';
 let page = 1;
@@ -10,25 +11,33 @@ function showErrorNotification(message) {
     Notiflix.Notify.failure(message);
 }
 async function searchImages() {
+  if (!searchQuery) {
+    showErrorNotification('Please enter a search query.');
+    return;
+  }
+
   const url = `https://pixabay.com/api/?key=${API_KEY}&q=${encodeURIComponent(
     searchQuery
-  )}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}`;
+  )}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}&per_page=40`;
 
-    try {
-      
+  try {
     const response = await fetch(url);
     const data = await response.json();
-     
+
     if (data.totalHits === 0) {
       if (page === 1) {
-        showErrorNotification('Sorry, there are no images matching your search query. Please try again.');
+        showErrorNotification(
+          'Sorry, there are no images matching your search query. Please try again.'
+        );
       } else {
-        showErrorNotification("We're sorry, but you've reached the end of search results.");
-       
+        showErrorNotification(
+          "We're sorry, but you've reached the end of search results."
+        );
+        loadMoreBtn.style.display = 'none'; // Hide the "Load More" button when no more results.
       }
     } else {
       if (page === 1) {
-        gallery.innerHTML = ''; // Очищення галереї перед першим пошуком
+        gallery.innerHTML = ''; // Clear the gallery before the first search.
       }
 
       data.hits.forEach((image) => {
@@ -36,14 +45,20 @@ async function searchImages() {
         gallery.appendChild(card);
       });
 
-        loadMoreBtn.style.display = 'flex';
+      if (data.totalHits <= page * 40) {
+        loadMoreBtn.style.display = 'none'; // Hide the "Load More" button when reaching the end of results.
        
+        mes.style.display = 'block';
+      } else {
+        loadMoreBtn.style.display = 'flex'; // Show the "Load More" button.
+      }
     }
   } catch (error) {
     console.error('Error fetching images:', error);
-    showErrorNotification('Failed to fetch images. Please try again later.');
+    //showErrorNotification('Failed to fetch images. Please try again later.');
   }
 }
+
 
 function createPhotoCard(image) {
   const card = document.createElement('div');
