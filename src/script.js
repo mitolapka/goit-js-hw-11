@@ -33,11 +33,11 @@ async function searchImages() {
         showErrorNotification(
           "We're sorry, but you've reached the end of search results."
         );
-        loadMoreBtn.style.display = 'none'; // Hide the "Load More" button when no more results.
+        loadMoreBtn.style.display = 'none'; 
       }
     } else {
       if (page === 1) {
-        gallery.innerHTML = ''; // Clear the gallery before the first search.
+        gallery.innerHTML = ''; 
       }
 
       data.hits.forEach((image) => {
@@ -46,11 +46,12 @@ async function searchImages() {
       });
 
       if (data.totalHits <= page * 40) {
-        loadMoreBtn.style.display = 'none'; // Hide the "Load More" button when reaching the end of results.
+        loadMoreBtn.style.display = 'none'; 
        
         mes.style.display = 'block';
       } else {
-        loadMoreBtn.style.display = 'flex'; // Show the "Load More" button.
+        loadMoreBtn.style.display = 'flex'; 
+        mes.style.display = 'none';
       }
     }
   } catch (error) {

@@ -84,8 +84,9 @@ display: flex;
 justify-content: center;
 }
 .end-message {
-    display: none;
+
     font-size: 15px;
     margin-left: 15px;
     color: red;
 }
+
